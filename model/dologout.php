@@ -5,4 +5,10 @@
 	 * input:action of "logout"
 	 * output:"True"
 	 * */
+	 
+	$action = $_REQUEST["action"];
+	 if($action == "dologout")
+		echo "True";
+	 else
+		echo "False";
 ?>

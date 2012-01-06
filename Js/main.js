@@ -71,6 +71,72 @@ $(function(){
 			}
 		}
 	})
+	
+	/**********changed on 2012/1/6***************/
+	//to check my invitations
+	$("#Button_chkinvite").click(function(){
+		$.ajax({
+		type: "POST",
+		url: "/nego/model/dochkinvite.php",//deal login
+		
+		data: "action=dochkinvite",
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			//alert(data);
+			if(data == "True"){
+				alert("invite test success");
+			}else{
+				alert("invite test failed");
+				return false;
+			}
+		}
+		});
+	})
+	
+	//to check my negotiations
+	$("#Button_chknego").click(function(){
+		$.ajax({
+		type: "POST",
+		url: "/nego/model/dochknego.php",//deal login
+		
+		data: "action=dochknego",
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			//alert(data);
+			if(data == "True"){
+				alert("nego test success");
+			}else{
+				alert("nego test failed");
+				return false;
+			}
+		}
+		});
+	})
+	
+	
+	//to logout
+	$("#Button_logout").click(function(){
+		$.ajax({
+		type: "POST",
+		url: "/nego/model/dologout.php",//deal login
+		
+		data: "action=dologout",
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			//alert(data);
+			if(data == "True"){
+				alert("logout test success");
+				window.location = "/nego/view/login.php"
+			}else{
+				alert("logout test failed");
+				return false;
+			}
+		}
+		});
+	})
 });
 
 function UserLogin(name, pass){

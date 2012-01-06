@@ -5,4 +5,10 @@
 	 * output:"infomation of invitation list,
 	 * later should be xml file"
 	 * */
+	 
+	 $action = $_REQUEST["action"];
+	 if($action == "dochkinvite")
+		echo "True";
+	 else
+		echo "False";
 ?>
