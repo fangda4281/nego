@@ -137,6 +137,80 @@ $(function(){
 		}
 		});
 	})
+	
+	//do see my info
+	$("#Button_self").click(function(){
+		$.ajax({
+		type: "POST",
+		url: "/nego/model/doself.php",//deal login
+		
+		data: "action=doself",
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			//alert(data);
+			if(data == "True"){
+				alert("doself test success");
+			}else{
+				alert("doself test failed");
+				return false;
+			}
+		}
+		});
+	})
+	
+	//see my friend
+	$("#Button_friend").click(function(){
+		$.ajax({
+		type: "POST",
+		url: "/nego/model/dofriend.php",//deal login
+		
+		data: "action=dofriend",
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			//alert(data);
+			if(data == "True"){
+				alert("dofriend test success");
+			}else{
+				alert("dofriend test failed");
+				return false;
+			}
+		}
+		});
+	})
+	
+	//open contract  
+	$("#Button_contract").click(function(){
+		$.ajax({
+		type: "POST",
+		url: "/nego/model/docontract.php",//deal login
+		
+		data: "action=docontract",
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			//alert(data);
+			if(data == "True"){
+				alert("docontract test success");
+			}else{
+				alert("docontract test failed");
+				return false;
+			}
+		}
+		});
+	})
+	
+	//jump to negotiation platform
+	$("#Button_platform").click(function(){
+		window.location = "/nego/view/platform.php";//if success, go to main page
+	})
+	
+	//jump back to main platform
+	$("#Button_main").click(function(){
+		window.location = "/nego/view/main.php";//if success, go to main page
+	})
+	
 });
 
 function UserLogin(name, pass){
