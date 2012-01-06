@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <script type="text/javascript">
+	var map;
+	function abc() {
+        $.ajax({
+	        type: "POST",
+	        url: "create_xml2.php",
+            dataType: "xml",
+	        error: function(xml) {
+	            alert('Error loading XML document' + xml);
+	        },
+	        success: function(xml) {
+			    $(xml).find("boolkist").each(function(i) {
+			        var book_all = $(this).children("book").text();				
+			        var book = $(this).children("book[id='1']").text();
+					var bookname = $(this).children("book[id='1']").children("name").text();		
+					alert(book_all);
+					alert(book);
+					alert(bookname);
+	            });			
+		    }
+        });
+    }
+</script>
+</head>
+<body onload = "abc()">
+<div id="map_canvas"></div>
+</body>
+</html> 
