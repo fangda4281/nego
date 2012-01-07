@@ -34,7 +34,7 @@ echo	"this main.php";
 
 	</div>
   </fieldset>
-
+  <div id="negolist"></div>
   
   <!--用户的一些功能-->
   <fieldset>

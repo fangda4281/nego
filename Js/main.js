@@ -97,22 +97,36 @@ $(function(){
 	//to check my negotiations
 	$("#Button_chknego").click(function(){
 		$.ajax({
-		type: "POST",
-		url: "/nego/model/dochknego.php",//deal login
-		
-		data: "action=dochknego",
-		//data: "action=testData&name="+name+"&pass="+pass,
-		
-		success: function(data){
-			//alert(data);
-			if(data == "True"){
-				alert("nego test success");
-			}else{
-				alert("nego test failed");
-				return false;
-			}
-		}
-		});
+			type: "POST",
+	        url: "/nego/REF/create_negolist.php",
+            dataType: "xml",
+	        error: function(xml) {
+	            alert('Error loading XML document' + xml);
+	        },
+	        success: function(xml) {
+			    $(xml).find("nego_list").each(function(i) {
+					while($(this).children("nego[id='"+i+"']").text()!=""){
+						var contract_id    = $(this).children("nego[id='"+i+"']").children("contract").children("contract_id").text();
+						var contract_title = $(this).children("nego[id='"+i+"']").children("contract").children("contract_title").text();
+						var nego_id		   = $(this).children("nego[id='"+i+"']").children("nego_id").text();
+						var nego_A_id	   = $(this).children("nego[id='"+i+"']").children("nego_A").children("nego_A_id").text();
+						var nego_A_name    = $(this).children("nego[id='"+i+"']").children("nego_A").children("nego_A_name").text();
+						var nego_B_id	   = $(this).children("nego[id='"+i+"']").children("nego_B").children("nego_B_id").text();
+						var nego_B_name    = $(this).children("nego[id='"+i+"']").children("nego_B").children("nego_B_name").text();
+						var start_time_year= $(this).children("nego[id='"+i+"']").children("start_time").children("start_time_year").text();
+						var start_time_month	= $(this).children("nego[id='"+i+"']").children("start_time").children("start_time_month").text();
+						var start_time_day = $(this).children("nego[id='"+i+"']").children("start_time").children("start_time_day").text();
+						var status		   = $(this).children("nego[id='"+i+"']").children("status").text();
+						alert(contract_id);
+						document.getElementById("negolist").innerHTML+=contract_id+contract_title
+						+nego_id+nego_A_id+nego_A_name+nego_B_id+nego_B_name+start_time_year+"-"+
+						start_time_month+"-"+start_time_day+status+"<br/>";
+						i=i+1;
+					};
+	            });	
+				
+		    }
+        });	
 	})
 	
 	
