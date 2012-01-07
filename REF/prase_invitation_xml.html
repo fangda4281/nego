@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <script type="text/javascript">
+	function My_InnerHTML(nego_id,sender_name,sender_id,contract_id,contract_title,status,start_time){
+		document.getElementById("2").innerHTML+=nego_id+sender_name+sender_id+contract_id+contract_title+status+start_time+"<br/>";
+	}
+	function abc() {
+		$.ajax({
+			type: "POST",
+	        url: "create_invitation_xml.php",
+            dataType: "xml",
+	        error: function(xml) {
+	            alert('Error loading XML document' + xml);
+	        },
+	        success: function(xml) {
+			    $(xml).find("invitation_list").each(function(i) {
+					while($(this).children("invitation[id='"+i+"']").text()!=""){
+						var nego_id        = $(this).children("invitation[id='"+i+"']").children("nego_id").text();
+						var sender_name    = $(this).children("invitation[id='"+i+"']").children("sender").children("sender_name").text();
+						var sender_id      = $(this).children("invitation[id='"+i+"']").children("sender").children("sender_id").text();
+						var contract_id	   = $(this).children("invitation[id='"+i+"']").children("contract").children("contract_id").text();
+						var contract_title = $(this).children("invitation[id='"+i+"']").children("contract").children("contract_title").text();
+						var status		   = $(this).children("invitation[id='"+i+"']").children("status").text();
+						var role 		   = $(this).children("invitation[id='"+i+"']").children("role").text();
+						var start_year 	   = $(this).children("invitation[id='"+i+"']").children("start").children("start_year").text();
+						var start_month	   = $(this).children("invitation[id='"+i+"']").children("start").children("start_month").text();
+						var start_day 	   = $(this).children("invitation[id='"+i+"']").children("start").children("start_day").text();
+						My_InnerHTML(nego_id,sender_name,sender_id,contract_id,contract_title,status,start_year+"-"+start_month+"-"+start_day);
+						i++;
+					};
+	            });			
+		    }
+        });	
+    }
+</script>
+</head>
+<body onload = "abc()">
+<div id="map_canvas"></div>
+<div id="2"></div>
+</body>
+</html> 
