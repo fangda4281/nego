@@ -12,7 +12,7 @@
 	$action = $_REQUEST["action"];
 	$name = $_REQUEST["name"];
 	$pass = $_REQUEST["pass"];
-	$content = $_REQUEST["content"];
+	//$content = $_REQUEST["content"];
 	
 	/*assign username and userpass*/
 	//$username = "test1";

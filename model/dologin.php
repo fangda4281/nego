@@ -11,7 +11,7 @@
 	$action = $_REQUEST["action"];
 	$name = $_REQUEST["name"];
 	$pass = $_REQUEST["pass"];
-	$content = $_REQUEST["content"];
+	//$content = $_REQUEST["content"];
 	
 	//echo	"DB_localhost:\t".$DB_localhost."<br/>";
 	//echo	"DB_user:\t".$DB_user."<br/>";
