@@ -140,7 +140,7 @@ $(function(){
 	
 	//do see my info
 	$("#Button_self").click(function(){
-		$.ajax({
+		/*$.ajax({
 		type: "POST",
 		url: "/nego/model/doself.php",//deal login
 		
@@ -157,7 +157,9 @@ $(function(){
 				return false;
 			}
 		}
-		});
+		});*/
+
+		showselfinfo();
 	})
 	
 		
@@ -288,7 +290,8 @@ function UserRegister(name, pass){
 function showselfinfo() {
         $.ajax({
 	        type: "POST",
-	        url: "/nego/REF/selfinfoxml.php",
+	        url: "/nego/model/doself.php",
+			data: "action=doself",
             dataType: "xml",
 	        error: function(xml) {
 	            alert('Error loading XML document' + xml);
