@@ -21,10 +21,10 @@
 	}*/
 
 	$u_id = $_SESSION['userId'];
-	//$u_id = "1";
-	//$action = "doself";
-	$uname = "test";
-	$uimage = "path";
+	//$u_id = "2";
+	//$action = "saveinfo";
+	$uname = "test1";
+	$uimage = "path1";
 	$uinfo = "user info";
 
 	//Control
@@ -33,6 +33,7 @@
 		echo ShowSelfInfo($u_id);
 		break;
 	case "saveinfo":
+		SaveSelfInfo($name, $image, $info,$u_id);
 		echo "True";
 		break;
 	default:
@@ -96,8 +97,19 @@
 
 		echo $doc->saveXML();
 		
-		
-	
 	}
-	//$exist = $num_results;
+	
+	
+	function SaveSelfInfo($name, $image, $info, $u_id){
+		@ $db = new mysqli('localhost', 'nego','nego','nego');
+		if(mysqli_connect_errno())
+		{
+			echo	'Error:Could not connect to database. Please try again later.';
+			exit;
+		}
+		//insert query
+		$query = "update user set u_image = '$image', u_info = '$info' where u_id = '$u_id'";
+		$result = $db->query($query);
+		$db->close();
+	}
 ?>
