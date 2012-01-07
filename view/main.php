@@ -45,10 +45,28 @@ echo	"this main.php";
 			<input id="Button_contract" type="button" value="我的合同" class="btn" />&nbsp;&nbsp;
 			<input id="Button_platform" type="button" value="谈判界面" class="btn" />&nbsp;&nbsp;
 		</div>
-
 	</div>
   </fieldset>
   </div>
+  
+  <!--用户信息输出div-->
+  <div id="selfinfo">
+	<div>用户名：&nbsp;&nbsp;<input id="userName" type="text" class="txt" />
+		</div>
+		
+	<div>头像：&nbsp;&nbsp;&nbsp;&nbsp;<input id="userImage" type="text" class="txt" />
+	<input id="Button_imageself" type="button" value="上传头像" class="btn" />
+		</div>
+		
+	<div>用户信息：<input id="userInfo" type="text" class="txt" />
+		</div>
+	
+	<div>
+	<input id="Button_backself" type="button" value="返回" class="btn" />
+	<input id="Button_saveself" type="button" value="保存" class="btn" />
+		</div>
+  </div>
+  
  </body>
 </html>
 

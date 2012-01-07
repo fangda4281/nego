@@ -151,6 +151,7 @@ $(function(){
 			//alert(data);
 			if(data == "True"){
 				alert("doself test success");
+				showselfinfo();
 			}else{
 				alert("doself test failed");
 				return false;
@@ -159,6 +160,7 @@ $(function(){
 		});
 	})
 	
+		
 	//see my friend
 	$("#Button_friend").click(function(){
 		$.ajax({
@@ -211,6 +213,31 @@ $(function(){
 		window.location = "/nego/view/main.php";//if success, go to main page
 	})
 	
+	//back from selfinfo
+	$("#Button_backinfo").click(function(){
+		window.location = "/nego/view/main.php";//if success, go to main page
+	})
+	
+	//save selfinfo 
+	$("#Button_saveself").click(function(){
+		var $name=$("#userName");//用户名
+		var $image=$("#userImage");//image
+		var $info=$("#userInfo");//password
+		if($name.val() != "" & $image.val() != "" & $info.val()!="" ){
+			SaveUserInfo($name.val(), $image.val(), $info.val());//call the function UserLogin(string name, string pass)
+		}else{
+			if($name.val() == ""){
+				alert("用户名不能为空");
+				$name.focus();
+				return false;
+			}else{
+				alert("信息不能为空");
+				$info.focus();
+				return false;
+			}
+		}
+	})
+	
 });
 
 function UserLogin(name, pass){
@@ -250,6 +277,53 @@ function UserRegister(name, pass){
 				window.location = "/nego/view/main.php";//if success, go to main.php
 			}else{
 				alert("用户名重复！");
+				return false;
+			}
+		}
+	});
+}
+
+
+//点击显示用户信息之后，和xml交互，显示信息
+function showselfinfo() {
+        $.ajax({
+	        type: "POST",
+	        url: "/nego/REF/selfinfoxml.php",
+            dataType: "xml",
+	        error: function(xml) {
+	            alert('Error loading XML document' + xml);
+	        },
+	        success: function(xml) {
+			    $(xml).find("selfinfo").each(function(i) {
+			        var name = $(this).children("name").text();				
+			        var image = $(this).children("image").text();
+					var info = $(this).children("info").text();		
+					
+					$("#userName").val(name);
+					$("#userImage").val(image);
+					$("#userInfo").val(info);
+	            });			
+		    }
+        });
+    }
+	
+	
+function SaveUserInfo(name, image,info){
+	$.ajax({
+		type: "POST",
+		url: "/nego/model/doself.php",
+		
+		data: "action=saveinfo&name="
+		+ name+"&image="+image+"&info="+info,
+		//data: "action=testData&name="+name+"&pass="+pass,
+		
+		success: function(data){
+			alert(data);
+			if(data == "True"){
+				alert("保存成功");
+				window.location = "/nego/view/main.php";//if success, go to main.php
+			}else{
+				alert("保存失败！可能是新用户名重复");
 				return false;
 			}
 		}
