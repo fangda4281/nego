@@ -8,14 +8,21 @@
 	 
 	 * */
 	//$_SESSION['userId'] = "1";//need to change later
+	session_start();
 	$action = $_REQUEST["action"];
 	$name = $_REQUEST["name"];
 	$image = $_REQUEST["image"];
 	$info = $_REQUEST["info"];
+	
+	/*if($_SESSION['userId'] == 1){
+	$u_id = 1;
+	}else{
+	$u_id = 2;
+	}*/
 
-	//$u_id = $_SESSION['userId'];
-	$u_id = "1";
-	$action = "doself";
+	$u_id = $_SESSION['userId'];
+	//$u_id = "1";
+	//$action = "doself";
 	$uname = "test";
 	$uimage = "path";
 	$uinfo = "user info";
