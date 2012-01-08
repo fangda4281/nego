@@ -1,6 +1,28 @@
-//*****
-fangda cai Jan 5th:
-1 files divided into 'Js', 'view'and 'model'
-2 REF contains useful files 
-//*****
-
+negolist xml structure:
+ <nego_list>
+  <nego>
+    <contract>
+	<contract_id>
+	</contract_id>
+	<contract_title>
+	</contract_title>
+    </contract>
+    <nego_id>
+    </nego_id>
+    <nego_A>
+	<nego_A_id></nego_A_id>
+	<nego_A_name></nego_A_name>
+    </nego_A>
+    <nego_B>
+	<nego_B_id></nego_B_id>
+	<nego_B_name></nego_B_name>
+    </nego_B>
+    <start_time>
+	<start_time_year></start_time_year>
+	<start_time_month></start_time_month>
+	<start_time_day></start_time_day>
+    </start_time>
+    <status>
+    </status>
+  </nego>
+ </nego_list>
